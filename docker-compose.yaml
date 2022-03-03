@@ -1,7 +1,8 @@
-version: '3'
+version: '3.9'
 services:
   strapi:
     image: strapi/strapi
+    container_name: strapi_container
     environment:
       DATABASE_CLIENT: postgres
       DATABASE_NAME: strapi
@@ -13,11 +14,16 @@ services:
       - ./app:/srv/app
     ports:
       - '1337:1337'
+    links: 
+      - postgres
     depends_on:
       - postgres
 
   postgres:
     image: postgres
+    container_name: database_container
+    ports: 
+      - 5432:5432 
     environment:
       POSTGRES_DB: strapi
       POSTGRES_USER: strapi
