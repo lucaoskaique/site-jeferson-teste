@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3'
 services:
   strapi:
     image: strapi/strapi
@@ -14,8 +14,6 @@ services:
       - ./app:/srv/app
     ports:
       - '1337:1337'
-    links: 
-      - postgres
     depends_on:
       - postgres
 
